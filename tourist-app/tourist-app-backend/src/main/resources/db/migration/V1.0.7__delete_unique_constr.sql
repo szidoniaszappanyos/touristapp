@@ -1,0 +1,1 @@
+ALTER TABLE gallery drop constraint gallery_unique ;

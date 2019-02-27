@@ -1,0 +1,1 @@
+ALTER TABLE gallery ADD constraint gallery_unique unique(attraction_id);
