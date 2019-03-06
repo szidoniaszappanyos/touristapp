@@ -11,6 +11,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
+import { MapsComponent } from './maps/maps.component';
+import { AgmCoreModule } from '@agm/core';
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -19,7 +22,8 @@ import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
     HeaderComponent,
     FooterComponent,
     PreferencesComponent,
-    SightsToSeeComponent
+    SightsToSeeComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,11 @@ import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBJtyozSdp3v_CzYFz28I26Ay7mwii8dBU'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
