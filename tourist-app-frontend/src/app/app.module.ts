@@ -14,6 +14,8 @@ import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
 import { MapsComponent } from './maps/maps.component';
 import { AgmCoreModule } from '@agm/core';
 import {CommonModule} from "@angular/common";
+import {AgmDirectionModule} from "agm-direction";
+import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 
 
 @NgModule({
@@ -35,8 +37,12 @@ import {CommonModule} from "@angular/common";
     ReactiveFormsModule,
     CommonModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBJtyozSdp3v_CzYFz28I26Ay7mwii8dBU'
-    })
+      apiKey: 'AIzaSyBJtyozSdp3v_CzYFz28I26Ay7mwii8dBU',
+      libraries: ["places"]
+    }),
+    AgmDirectionModule,
+    GooglePlaceModule,
+    AgmCoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
