@@ -2,7 +2,9 @@
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+<mat-form-field>
+<input matInput placeholder="Search for Places" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+</mat-form-field>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="19" [streetViewControl]="true">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
