@@ -16,6 +16,9 @@ import { AgmCoreModule } from '@agm/core';
 import {CommonModule} from "@angular/common";
 import {AgmDirectionModule} from "agm-direction";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
+import { LoginComponent } from './login/login.component';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import {GooglePlaceModule} from "ngx-google-places-autocomplete";
     FooterComponent,
     PreferencesComponent,
     SightsToSeeComponent,
-    MapsComponent
+    MapsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,9 @@ import {GooglePlaceModule} from "ngx-google-places-autocomplete";
     GooglePlaceModule,
     AgmCoreModule
   ],
-  providers: [],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

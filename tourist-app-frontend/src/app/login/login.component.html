@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <div class="title text-center">Sign in</div>
+  <hr class="my-4">
+  <form [formGroup]="form" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" [formControl]="emailFormControl"
+             [errorStateMatcher]="matcher">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <input matInput formControlName="password" placeholder="Enter your password"
+             [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <mat-error *ngIf="form.get('password').hasError('minlength')">
+      Your password should have at least 6 characters.
+    </mat-error>
+    <mat-error *ngIf="form.get('password').hasError('maxlength')">
+      Your password should have maximum 24 characters.
+    </mat-error>
+    &nbsp;
+  </form>
+</div>
+
