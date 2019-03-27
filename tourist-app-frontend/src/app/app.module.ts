@@ -19,7 +19,7 @@ import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import { LoginComponent } from './login/login.component';
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material";
 import { RegisterComponent } from './register/register.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     SightsToSeeComponent,
     MapsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,6 +42,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBJtyozSdp3v_CzYFz28I26Ay7mwii8dBU',
       libraries: ["places"]
@@ -50,8 +52,7 @@ import { RegisterComponent } from './register/register.component';
     AgmCoreModule
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
-  ],
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

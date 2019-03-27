@@ -1,11 +1,11 @@
 <div class="jumbotron">
   <div class="title text-center">Sign up</div>
   <hr class="my-4">
-  <form [formGroup]="form" class="example-form">
+  <form [formGroup]="form" class="example-form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
     <div>
       <mat-form-field class="nameInput">
         <input matInput placeholder="First Name" formControlName="name"
-               [errorStateMatcher]="matcher">
+               [errorStateMatcher]="matcher" (keyup)="getFirstName($event)">
         <mat-error *ngIf="form.get('name').hasError('pattern')">
           Enter your name.
         </mat-error>
@@ -16,7 +16,7 @@
       &nbsp;&nbsp;&nbsp;
       <mat-form-field class="nameInput">
         <input matInput placeholder="Last Name" formControlName="name"
-               [errorStateMatcher]="matcher">
+               [errorStateMatcher]="matcher" (keyup)="getLastName($event)">
         <mat-error *ngIf="form.get('name').hasError('pattern')">
           Enter your name.
         </mat-error>
@@ -28,14 +28,14 @@
     &nbsp;
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="date"
-             (dateInput)="addDate('input', $event)" required>
-      <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+             (dateInput)="getDate('input', $event)" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     &nbsp;
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Email" [formControl]="emailFormControl"
-             [errorStateMatcher]="matcher">
+             [errorStateMatcher]="matcher" (keyup)="getEmail($event)">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
       </mat-error>
@@ -46,7 +46,7 @@
     &nbsp;
     <mat-form-field class="nameInput">
       <input matInput placeholder="Username" formControlName="username"
-             [errorStateMatcher]="matcher">
+             [errorStateMatcher]="matcher" (keyup)="getUsrname($event)">
       <mat-error *ngIf="form.get('username').hasError('pattern')">
         Enter a valid username.
       </mat-error>
@@ -57,7 +57,7 @@
     &nbsp;
     <mat-form-field>
       <input matInput formControlName="password" placeholder="Enter your password"
-             [type]="hide ? 'password' : 'text'">
+             [type]="hide ? 'password' : 'text'" (keyup)="getPassword($event)">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="form.get('password').hasError('required')">
         Name is <strong>required</strong>
@@ -71,6 +71,10 @@
     </mat-form-field>
     &nbsp;
     <button mat-button>Create Account</button>
+    <br/>
+    <div class="signUpError">
+      <mat-error>{{errorMessage}}</mat-error>
+    </div>
   </form>
 </div>
 

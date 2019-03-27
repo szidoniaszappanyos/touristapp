@@ -12,6 +12,7 @@ import java.util.Objects;
 public class TouristUser {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lastName;
     private String firstName;
@@ -33,8 +34,7 @@ public class TouristUser {
     public TouristUser() {
     }
 
-    public TouristUser(Long id, String lastName, String firstName, String email, Timestamp birthDate) {
-        this.id = id;
+    public TouristUser( String lastName, String firstName, String email, Timestamp birthDate) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
