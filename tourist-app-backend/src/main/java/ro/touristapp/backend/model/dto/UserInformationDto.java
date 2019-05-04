@@ -1,6 +1,9 @@
 package ro.touristapp.backend.model.dto;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import ro.touristapp.backend.service.CustomDateDeserializer;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -32,6 +35,7 @@ public class UserInformationDto {
     @Size(min = 6, max = 40)
     private String password;
 
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private Timestamp birthDate;
 
     public Timestamp getBirthDate() {

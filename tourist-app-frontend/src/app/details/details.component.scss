@@ -1,0 +1,11 @@
+.myCarousel{
+  width: 50% !important;
+  height: 50% !important;
+}
+
+@media screen and (max-width: 500px) {
+  .myCarousel{
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

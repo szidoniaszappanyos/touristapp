@@ -1,20 +1,17 @@
 package ro.touristapp.backend.model.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 public class UserDto {
-    @NotBlank
-    @Size(min=3, max = 60)
+
     private String username;
 
-    @NotBlank
-    @Size(min = 6, max = 40)
     private String password;
 
-    public UserDto(@NotBlank @Size(min = 3, max = 60) String username, @NotBlank @Size(min = 6, max = 40) String password) {
+    public UserDto( String username,  String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public UserDto() {
     }
 
     public String getUsername() {

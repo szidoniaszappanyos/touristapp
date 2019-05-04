@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ErrorStateMatcher, MatDatepickerInputEvent} from "@angular/material";
+import {ErrorStateMatcher, MatDatepickerInputEvent, MatSnackBar} from "@angular/material";
 import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {SignUpInfo} from "../auth/signup-info";
 import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -53,9 +54,13 @@ export class RegisterComponent implements OnInit {
   username: string;
   email: string;
   password: string;
-  birthDate: Date;
+  birthDate: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private snackBar: MatSnackBar,
+              private router:Router
+  ) {
 
     this.form = this.formBuilder.group({
       password: new FormControl('', PasswordValidation),
@@ -79,7 +84,8 @@ export class RegisterComponent implements OnInit {
       this.events.push(`${type}: ${event.value}`);
       this.month = event.value.getMonth() + 1;
       this.date = event.value.getDate() + '/' + this.month + '/' + event.value.getFullYear();
-      console.log(this.date);
+      this.birthDate = this.date + ' 00:00';
+      console.log(this.birthDate);
     }
   }
 
@@ -122,12 +128,21 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.router.navigate(['login']);
+        this.showSnackbar('You successfully signed up!')
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
+        this.showSnackbar('Registration was unsuccessful!'+ '\n' + error.error.message)
       }
     );
+  }
+
+  showSnackbar(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 5000,
+      panelClass: ['snackbar'],
+    });
   }
 }

@@ -5,9 +5,9 @@ export class SignUpInfo {
     email: string;
     role: string[];
     password: string;
-    birthDate: Date;
+    birthDate: string;
 
-    constructor(lastName: string, firstName: string, username: string, email: string, password: string, birthDate:Date) {
+    constructor(lastName: string, firstName: string, username: string, email: string, password: string, birthDate:string) {
         this.lastName=lastName;
         this.firstName = firstName;
         this.username = username;

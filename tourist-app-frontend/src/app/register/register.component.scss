@@ -41,3 +41,9 @@
   text-align: center;
 }
 
+::ng-deep .snackbar {
+  text-align: center !important;
+  background: #c0d5b2 !important;
+  opacity: 0.8 !important;
+  margin-bottom: 20% !important;
+}

@@ -1,7 +1,6 @@
 package ro.touristapp.backend.resource;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import ro.touristapp.backend.model.TouristUser;
 import ro.touristapp.backend.model.dto.UserDto;
 import ro.touristapp.backend.model.dto.UserInformationDto;
-import ro.touristapp.backend.repository.RoleRepository;
 import ro.touristapp.backend.repository.TouristUserRepository;
 import ro.touristapp.backend.repository.UsersRepository;
 import ro.touristapp.backend.resource.response.JwtResponse;
-import ro.touristapp.backend.security.jwt.JwtProvider;
 import ro.touristapp.backend.resource.response.ResponseMessage;
+import ro.touristapp.backend.security.jwt.JwtProvider;
 import ro.touristapp.backend.service.UserService;
 
 import javax.validation.Valid;
@@ -57,8 +54,8 @@ public class UserResource {
 
         String jwt = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-       JwtResponse jwtResponse = new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-        return  ResponseEntity.ok(jwtResponse);
+        JwtResponse jwtResponse = new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+        return ResponseEntity.ok(jwtResponse);
     }
 
     @PostMapping("/signup")

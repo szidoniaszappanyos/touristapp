@@ -1,25 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
 import {MaterialModule} from "./material.module";
-import { PreferencesComponent } from './preferences/preferences.component';
+import {PreferencesComponent} from './preferences/preferences.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
-import { MapsComponent } from './maps/maps.component';
-import { AgmCoreModule } from '@agm/core';
+import {MapsComponent} from './maps/maps.component';
+import {AgmCoreModule} from '@agm/core';
 import {CommonModule} from "@angular/common";
 import {AgmDirectionModule} from "agm-direction";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material";
-import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import {RegisterComponent} from './register/register.component';
+import {HttpClientModule} from '@angular/common/http';
+import {httpInterceptorProviders} from "./auth/auth-interceptor";
+import {DetailsComponent} from './details/details.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MapsComponent,
     LoginComponent,
     RegisterComponent,
+    DetailsComponent,
 
   ],
   imports: [
@@ -52,7 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     AgmCoreModule
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ public class Location {
     @Id
     private Long id;
     private String name;
-    @Column(name = "adress")
+    @Column(name = "address")
     private String address;
     private String details;
 

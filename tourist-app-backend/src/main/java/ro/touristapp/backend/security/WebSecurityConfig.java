@@ -23,7 +23,7 @@ import ro.touristapp.backend.service.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(
         prePostEnabled = true
 )
-public class BasicAuthConfiguration
+public class WebSecurityConfig
         extends WebSecurityConfigurerAdapter {
 
     @Autowired
