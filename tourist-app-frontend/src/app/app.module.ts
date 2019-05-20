@@ -12,7 +12,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SightsToSeeComponent} from "./sights-to-see/sights-to-see.component";
 import {MapsComponent} from './maps/maps.component';
-import {AgmCoreModule} from '@agm/core';
+import {AgmCoreModule, GoogleMapsAPIWrapper, PolylineManager} from '@agm/core';
 import {CommonModule} from "@angular/common";
 import {AgmDirectionModule} from "agm-direction";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
@@ -22,9 +22,14 @@ import {RegisterComponent} from './register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from "./auth/auth-interceptor";
 import {DetailsComponent} from './details/details.component';
+import {SpecificMapComponent} from './specific-map/specific-map.component';
+import {AboutClujComponent} from './about-cluj/about-cluj.component';
+import {TripRecommendationsComponent} from './trip-recommendations/trip-recommendations.component';
+import { DetailsTourComponent } from './details-tour/details-tour.component';
 
 
-@NgModule({
+@NgModule(
+  {
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -35,6 +40,10 @@ import {DetailsComponent} from './details/details.component';
     LoginComponent,
     RegisterComponent,
     DetailsComponent,
+    SpecificMapComponent,
+    AboutClujComponent,
+    TripRecommendationsComponent,
+    DetailsTourComponent,
 
   ],
   imports: [
@@ -53,9 +62,12 @@ import {DetailsComponent} from './details/details.component';
     }),
     AgmDirectionModule,
     GooglePlaceModule,
-    AgmCoreModule
+    AgmCoreModule,
+
+
   ],
   providers: [
+    PolylineManager,GoogleMapsAPIWrapper,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

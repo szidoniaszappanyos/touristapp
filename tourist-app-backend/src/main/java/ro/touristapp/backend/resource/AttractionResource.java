@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ro.touristapp.backend.model.Attraction;
 import ro.touristapp.backend.model.Picture;
-import ro.touristapp.backend.model.dto.AttractionAllDto;
+import ro.touristapp.backend.model.dto.*;
 import ro.touristapp.backend.service.AttractionService;
 
 import javax.ws.rs.Produces;
@@ -31,8 +31,23 @@ public class AttractionResource {
     }
 
     @RequestMapping(path = "/gallery/{id}", method = RequestMethod.GET)
-    public List<Picture> getGalleyOfAttraction(@PathVariable long id) {
+    public List<PictureDto> getGalleryOfAttraction(@PathVariable long id) {
         return attractionService.getGalleryOfAttraction(id);
+    }
+
+    @RequestMapping(path = "/location/{id}", method = RequestMethod.GET)
+    public LocationDto getLocationOfAttraction(@PathVariable long id) {
+        return attractionService.getLocationOfAttraction(id);
+    }
+
+    @RequestMapping(path = "/details/{id}", method = RequestMethod.GET)
+    public DetailsDto getDetailsOfAttraction(@PathVariable long id) {
+        return attractionService.getDetailsOfAttraction(id);
+    }
+
+    @RequestMapping(path = "/tour/details/{id}", method = RequestMethod.GET)
+    public TourAttraction getDetailsOfTourAttraction(@PathVariable long id) {
+        return attractionService.getDetailsOfTourAttraction(id);
     }
 
 }
