@@ -57,20 +57,22 @@ public class AttractionService {
     public DetailsDto getDetailsOfAttraction(long id) {
         Attraction attraction = attractionRepository.findById(id).get();
         List<String> schedule = new ArrayList<String>();
-        schedule.add(attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getTuesdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getTuesdaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getWednesdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getWednesdaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getThursdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getThursdaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getFridaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getFridaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getSaturdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getSaturdaySchedule().getOpeningHours().toString().substring(11, 16));
-        schedule.add(attraction.getWeeklySchedule().getSundaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
-                + attraction.getWeeklySchedule().getSundaySchedule().getOpeningHours().toString().substring(11, 16));
+        if(attraction.getWeeklySchedule()!=null){
+            schedule.add(attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getTuesdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getTuesdaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getWednesdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getWednesdaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getThursdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getThursdaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getFridaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getFridaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getSaturdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getSaturdaySchedule().getOpeningHours().toString().substring(11, 16));
+            schedule.add(attraction.getWeeklySchedule().getSundaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
+                    + attraction.getWeeklySchedule().getSundaySchedule().getOpeningHours().toString().substring(11, 16));
+        }
         return new DetailsDto(attraction.getName(), attraction.getDetails(), attraction.getAttractionType().getName(), schedule);
     }
 
