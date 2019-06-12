@@ -55,7 +55,7 @@ export class DetailsTourComponent implements OnInit {
   private lat5: number;
   private name5: string;
   private address5: string;
-  attractions: any[]=[];
+  attractions: AttractionFromTour[]=[];
 
   constructor(private route: ActivatedRoute, private getTourService: GetTourService,
               private locationService: GetLocationOfAttractionService) {
@@ -118,8 +118,10 @@ export class DetailsTourComponent implements OnInit {
         this.lat5 = location.latitude;
         this.name5 = location.name;
         this.address5 = location.address;
-      }).then((result) => this.attractions.push(new AttractionFromTour(this.attraction5.name, this.attraction5.details, this.name5, this.address5, this.attraction5.latitude, this.attraction5.longitude)));
+      }).then((result) => {this.attractions.push(new AttractionFromTour(this.attraction5.name, this.attraction5.details, this.name5, this.address5, this.attraction5.latitude, this.attraction5.longitude));
+      console.log(this.attractions)});
     });
+
   }
 
   ngOnInit() {

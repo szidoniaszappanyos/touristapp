@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import ro.touristapp.backend.model.Attraction;
 import ro.touristapp.backend.model.dto.AttractionAllDto;
 
+import java.util.Random;
+
 @Component
 public class AttractionToAttractionAllDtoConverter {
     public AttractionAllDto toDto(Attraction attraction){
@@ -18,7 +20,10 @@ public class AttractionToAttractionAllDtoConverter {
             attractionAllDto.setPictureFileName(attraction.getPictures().get(0).getFileName());
         }
         else{
-            attractionAllDto.setPictureFileName(null);
+            String[] defaultPictures = {"town.png","town2.png", "town3.png"};
+            Random rand = new Random();
+            int randomNum = rand.nextInt((3 - 1) + 1) + 1;
+            attractionAllDto.setPictureFileName(defaultPictures[randomNum-1]);
         }
         return attractionAllDto;
     }
