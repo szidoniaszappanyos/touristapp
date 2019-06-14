@@ -139,39 +139,4 @@ public class WeeklySchedule {
         this.attractions = attractions;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WeeklySchedule that = (WeeklySchedule) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(mondaySchedule, that.mondaySchedule) &&
-                Objects.equals(tuesdaySchedule, that.tuesdaySchedule) &&
-                Objects.equals(wednesdaySchedule, that.wednesdaySchedule) &&
-                Objects.equals(thursdaySchedule, that.thursdaySchedule) &&
-                Objects.equals(fridaySchedule, that.fridaySchedule) &&
-                Objects.equals(saturdaySchedule, that.saturdaySchedule) &&
-                Objects.equals(sundaySchedule, that.sundaySchedule) &&
-                Objects.equals(attractions, that.attractions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, mondaySchedule, tuesdaySchedule, wednesdaySchedule, thursdaySchedule, fridaySchedule, saturdaySchedule, sundaySchedule, attractions);
-    }
-
-    @Override
-    public String toString() {
-        return "WeeklySchedule{" +
-                "id=" + id +
-                ", mondaySchedule=" + mondaySchedule +
-                ", tuesdaySchedule=" + tuesdaySchedule +
-                ", wednesdaySchedule=" + wednesdaySchedule +
-                ", thursdaySchedule=" + thursdaySchedule +
-                ", fridaySchedule=" + fridaySchedule +
-                ", saturdaySchedule=" + saturdaySchedule +
-                ", sundaySchedule=" + sundaySchedule +
-                ", attractions=" + attractions +
-                '}';
-    }
 }

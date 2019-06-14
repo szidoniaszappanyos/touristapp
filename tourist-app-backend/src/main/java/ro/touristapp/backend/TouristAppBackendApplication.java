@@ -5,11 +5,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import org.springframework.transaction.annotation.Transactional;
 import ro.touristapp.backend.model.Attraction;
 import ro.touristapp.backend.model.AttractionType;
 import ro.touristapp.backend.model.Interests;
@@ -24,6 +24,8 @@ import ro.touristapp.backend.model.TouristUser;
 import ro.touristapp.backend.model.Users;
 import ro.touristapp.backend.repository.AttractionRepository;
 import ro.touristapp.backend.repository.AttractionTypeRepository;
+
+import javax.persistence.EntityManager;
 
 @SpringBootApplication
 public class TouristAppBackendApplication {
@@ -34,6 +36,9 @@ public class TouristAppBackendApplication {
 	@Autowired
 	AttractionRepository attractionRepository;
 
+	@Autowired
+	EntityManager em;
+
 	List<Users> users = new ArrayList<Users>();
 
 	public static void main(String[] args) {
@@ -41,6 +46,7 @@ public class TouristAppBackendApplication {
 	}
 
 	@EventListener(ApplicationReadyEvent.class)
+	@Transactional
 	public void doSomethingAfterStartup() {
 		List<AttractionType> attractionTypes = attractionTypeRepository.findAll();
 		List<Users> users = new ArrayList<>();
@@ -62,12 +68,11 @@ public class TouristAppBackendApplication {
 		}
 
 		List<Attraction> attractions = attractionRepository.findAll();
-		List<Set<Attraction>> selectedRoutes = new ArrayList<>();
+		List<List<Attraction>> selectedRoutes = new ArrayList<>();
 		for (int i = 0; i < 500; i++) {
 			List<Attraction> copy = new LinkedList<>(attractions);
 			Collections.shuffle(copy);
-			Set<Attraction> selectedAttractions = new HashSet<>(copy.subList(0, 5));
-			selectedRoutes.add(selectedAttractions);
+			selectedRoutes.add(copy);
 		}
 		System.out.println(selectedRoutes);
 		System.out.println(users);

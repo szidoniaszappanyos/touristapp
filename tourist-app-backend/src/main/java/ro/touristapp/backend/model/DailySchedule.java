@@ -152,43 +152,4 @@ public class DailySchedule {
         this.sundaysWeeklySchedules = sundaysWeeklySchedules;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DailySchedule that = (DailySchedule) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(working_day, that.working_day) &&
-                Objects.equals(openingHours, that.openingHours) &&
-                Objects.equals(closingHours, that.closingHours) &&
-                Objects.equals(mondaysWeeklySchedules, that.mondaysWeeklySchedules) &&
-                Objects.equals(tuesdaysWeeklySchedules, that.tuesdaysWeeklySchedules) &&
-                Objects.equals(wednesdaysWeeklySchedules, that.wednesdaysWeeklySchedules) &&
-                Objects.equals(thursdaysWeeklySchedules, that.thursdaysWeeklySchedules) &&
-                Objects.equals(fridaysWeeklySchedules, that.fridaysWeeklySchedules) &&
-                Objects.equals(saturdaysWeeklySchedules, that.saturdaysWeeklySchedules) &&
-                Objects.equals(sundaysWeeklySchedules, that.sundaysWeeklySchedules);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, working_day, openingHours, closingHours, mondaysWeeklySchedules, tuesdaysWeeklySchedules, wednesdaysWeeklySchedules, thursdaysWeeklySchedules, fridaysWeeklySchedules, saturdaysWeeklySchedules, sundaysWeeklySchedules);
-    }
-
-    @Override
-    public String toString() {
-        return "DailySchedule{" +
-                "id=" + id +
-                ", working_day='" + working_day + '\'' +
-                ", openingHours=" + openingHours +
-                ", closingHours=" + closingHours +
-                ", mondaysWeeklySchedules=" + mondaysWeeklySchedules +
-                ", tuesdaysWeeklySchedules=" + tuesdaysWeeklySchedules +
-                ", wednesdaysWeeklySchedules=" + wednesdaysWeeklySchedules +
-                ", thursdaysWeeklySchedules=" + thursdaysWeeklySchedules +
-                ", fridaysWeeklySchedules=" + fridaysWeeklySchedules +
-                ", saturdaysWeeklySchedules=" + saturdaysWeeklySchedules +
-                ", sundaysWeeklySchedules=" + sundaysWeeklySchedules +
-                '}';
-    }
 }

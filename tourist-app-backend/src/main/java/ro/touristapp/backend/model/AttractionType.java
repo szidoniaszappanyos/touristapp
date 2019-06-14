@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,7 +24,7 @@ public class AttractionType {
 	@JsonBackReference
 	private List<Attraction> attractions;
 
-	@OneToMany(mappedBy = "attractionType", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "attractionType")
 	@JsonManagedReference
 	private List<Interests> interests;
 
@@ -81,25 +80,4 @@ public class AttractionType {
 		this.categories = categories;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		AttractionType that = (AttractionType) o;
-		return Objects.equals(id, that.id) && Objects.equals(name, that.name)
-				&& Objects.equals(attractions, that.attractions) && Objects.equals(interests, that.interests);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, name, attractions, interests);
-	}
-
-	@Override
-	public String toString() {
-		return "AttractionType{" + "id=" + id + ", name='" + name + '\'' + ", attractions=" + attractions
-				+ ", interests=" + interests + '}';
-	}
 }

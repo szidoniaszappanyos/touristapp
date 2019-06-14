@@ -40,7 +40,8 @@ CREATE TABLE attraction(
 												 attraction_type_id int references attraction_type(id),
 												 location_id int references locations(id),
 												 name varchar(255),
-												 details varchar(255)
+												 details varchar(255),
+												 duration bigint 
 
 );
 

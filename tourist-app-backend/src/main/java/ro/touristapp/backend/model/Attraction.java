@@ -20,8 +20,8 @@ public class Attraction {
 	private Long id;
 	private String name;
 	private String details;
-	private double cost;
-	private long duration;
+	private Double cost;
+	private Long duration;
 
 	@ManyToOne
 	@JoinColumn(name = "location_id")

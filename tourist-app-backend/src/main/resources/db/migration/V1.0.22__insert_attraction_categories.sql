@@ -1,7 +1,7 @@
-INSERT INTO attraction_category(id,category) VALUES (1,"art");
-INSERT INTO attraction_category(id,category) VALUES (2,"amusement");
-INSERT INTO attraction_category(id,category) VALUES (3,"recreation");
-INSERT INTO attraction_category(id,category) VALUES (4,"historic");
+INSERT INTO attraction_category(id,category) VALUES (1,'art');
+INSERT INTO attraction_category(id,category) VALUES (2,'amusement');
+INSERT INTO attraction_category(id,category) VALUES (3,'recreation');
+INSERT INTO attraction_category(id,category) VALUES (4,'historic');
 
 INSERT INTO attraction_type_category (category_id, type_id) VALUES(1,1);
 INSERT INTO attraction_type_category (category_id, type_id) VALUES(4,1);
