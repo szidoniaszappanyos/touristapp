@@ -2,6 +2,7 @@ package ro.touristapp.backend.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,6 +48,11 @@ public class Attraction {
 	@OneToMany(mappedBy = "attraction")
 	@JsonManagedReference
 	private List<Visit> visits;
+
+	@ManyToMany
+	@JoinTable(name = "attraction_tour", joinColumns = { @JoinColumn(name = "attraction_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "tour_id") })
+	private Set<Tour> tourSet;
 
 	public Attraction() {
 	}

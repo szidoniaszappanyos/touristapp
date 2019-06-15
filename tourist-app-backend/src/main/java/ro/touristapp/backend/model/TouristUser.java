@@ -3,6 +3,7 @@ package ro.touristapp.backend.model;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,9 @@ public class TouristUser {
 	@OneToMany(mappedBy = "touristUser")
 	@JsonBackReference
 	private List<Visit> visits;
+
+	@OneToMany(mappedBy = "user")
+	private Set<Rating> ratings;
 
 	public TouristUser() {
 	}
@@ -132,5 +136,13 @@ public class TouristUser {
 	public String toString() {
 		return "TouristUser{" + "id=" + id + ", lastName='" + lastName + '\'' + ", firstName='" + firstName + '\''
 				+ ", email='" + email + '\'' + ", birthDate=" + birthDate + '}';
+	}
+
+	public Set<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<Rating> ratings) {
+		this.ratings = ratings;
 	}
 }

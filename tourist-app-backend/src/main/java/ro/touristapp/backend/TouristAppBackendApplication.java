@@ -1,23 +1,20 @@
 package ro.touristapp.backend;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-
 import org.springframework.transaction.annotation.Transactional;
 import ro.touristapp.backend.model.*;
 import ro.touristapp.backend.repository.AttractionRepository;
 import ro.touristapp.backend.repository.AttractionTypeRepository;
 
 import javax.persistence.EntityManager;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 @SpringBootApplication
 public class TouristAppBackendApplication {
@@ -74,7 +71,12 @@ public class TouristAppBackendApplication {
 			tour.generateSummary();
 			tours.add(tour);
 		}
-		System.out.println(users);
+
+		for(int i=0;i<users.size();i++){
+			for(int j=0;j<tours.size();j++){
+				
+			}
+		}
 	}
 
 }

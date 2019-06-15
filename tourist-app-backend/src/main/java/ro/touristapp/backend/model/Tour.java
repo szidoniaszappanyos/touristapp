@@ -5,9 +5,7 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Tour {
@@ -21,13 +19,22 @@ public class Tour {
 	private int amusement;
 	private int recreation;
 	private int historic;
-	@OneToMany
+	@ManyToMany
+	@JoinTable(name = "attraction_tour", joinColumns = { @JoinColumn(name = "tour_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "attraction_id") })
 	private Set<Attraction> attractions = new HashSet<>();
+
+	@OneToMany(mappedBy = "tour")
+	private Set<Rating> ratings;
 
 	public void generateSummary() {
 
+		Attraction previous= null;
 		for (Iterator<Attraction> it = attractions.iterator(); it.hasNext();) {
 			Attraction attraction = it.next();
+			if(previous!=null) {
+				distance+=distance(attraction.getLocation(),previous.getLocation());
+			}
 			duration+= Optional.ofNullable(attraction.getDuration()).orElse(1800L);
 			cost+=Optional.ofNullable(attraction.getCost()).orElse(0.0);
 			Set<AttractionCategory> categories = attraction.getAttractionType().getCategories();
@@ -54,7 +61,24 @@ public class Tour {
 
 				}
 			}
+			previous=attraction;
 		}
+	}
+
+	private double distance(Location a1,Location a2){
+		return 0.0;
+	}
+
+	private double distance(
+			double x1,
+			double y1,
+			double x2,
+			double y2) {
+
+		double ac = Math.abs(y2 - y1);
+		double cb = Math.abs(x2 - x1);
+
+		return Math.hypot(ac, cb);
 	}
 
 	public long getDistance() {
@@ -121,4 +145,19 @@ public class Tour {
 		this.attractions = attractions;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Set<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<Rating> ratings) {
+		this.ratings = ratings;
+	}
 }
