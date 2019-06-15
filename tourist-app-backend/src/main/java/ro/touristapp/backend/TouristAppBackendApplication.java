@@ -73,8 +73,14 @@ public class TouristAppBackendApplication {
 		}
 
 		for(int i=0;i<users.size();i++){
+			int[] interestsPoints = users.get(i).getTouristUser().getInterestsPoints();
+			System.out.println(interestsPoints);
 			for(int j=0;j<tours.size();j++){
-				
+				Rating rating = new Rating();
+				rating.setUser(users.get(i).getTouristUser());
+				rating.setTour(tours.get(j));
+//				rating.setStars();
+//				em.persist(rating);
 			}
 		}
 	}
