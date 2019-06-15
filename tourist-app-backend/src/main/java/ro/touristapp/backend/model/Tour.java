@@ -2,6 +2,7 @@ package ro.touristapp.backend.model;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -15,12 +16,11 @@ public class Tour {
 
 	private long distance;// meters
 	private long duration;// seconds
-	private double cost;// dollars
+	private double cost=0.0;// dollars
 	private int art;
 	private int amusement;
 	private int recreation;
 	private int historic;
-
 	@OneToMany
 	private Set<Attraction> attractions = new HashSet<>();
 
@@ -28,7 +28,32 @@ public class Tour {
 
 		for (Iterator<Attraction> it = attractions.iterator(); it.hasNext();) {
 			Attraction attraction = it.next();
+			duration+= Optional.ofNullable(attraction.getDuration()).orElse(1800L);
+			cost+=Optional.ofNullable(attraction.getCost()).orElse(0.0);
 			Set<AttractionCategory> categories = attraction.getAttractionType().getCategories();
+			for(Iterator<AttractionCategory>catsIt=categories.iterator();catsIt.hasNext();){
+				AttractionCategory attractionCategory = catsIt.next();
+				for(Iterator<AttractionType> typeIt = attractionCategory.getAttractionType().iterator();typeIt.hasNext();){
+					AttractionType attractionType=typeIt.next();
+					switch (attractionType.getId().intValue()){
+						case 1:
+							art++;
+							break;
+						case 2:
+							amusement++;
+							break;
+						case 3:
+							recreation++;
+							break;
+						case 4:
+							historic++;
+							break;
+						default:
+							break;
+					}
+
+				}
+			}
 		}
 	}
 

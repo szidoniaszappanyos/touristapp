@@ -3,11 +3,7 @@ package ro.touristapp.backend;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +13,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
 import org.springframework.transaction.annotation.Transactional;
-import ro.touristapp.backend.model.Attraction;
-import ro.touristapp.backend.model.AttractionType;
-import ro.touristapp.backend.model.Interests;
-import ro.touristapp.backend.model.TouristUser;
-import ro.touristapp.backend.model.Users;
+import ro.touristapp.backend.model.*;
 import ro.touristapp.backend.repository.AttractionRepository;
 import ro.touristapp.backend.repository.AttractionTypeRepository;
 
@@ -70,11 +62,18 @@ public class TouristAppBackendApplication {
 		List<Attraction> attractions = attractionRepository.findAll();
 		List<List<Attraction>> selectedRoutes = new ArrayList<>();
 		for (int i = 0; i < 500; i++) {
-			List<Attraction> copy = new LinkedList<>(attractions);
-			Collections.shuffle(copy);
+			Collections.shuffle(attractions);
+			List<Attraction> copy = new LinkedList<>(attractions.subList(0,5));
 			selectedRoutes.add(copy);
 		}
-		System.out.println(selectedRoutes);
+
+		List<Tour> tours = new ArrayList<>();
+		for(int i=0;i<selectedRoutes.size();i++){
+			Tour tour = new Tour();
+			tour.setAttractions(new HashSet<>(selectedRoutes.get(i)));
+			tour.generateSummary();
+			tours.add(tour);
+		}
 		System.out.println(users);
 	}
 
