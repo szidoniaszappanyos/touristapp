@@ -147,14 +147,18 @@ public class TouristUser {
         this.ratings = ratings;
     }
 
-    public int[] getInterestsPoints() {
+    public int[] getInterestsPoints(boolean adjusted) {
         int art = 0;
         int amusement = 0;
         int recreation = 0;
         int historic = 0;
         for (int i = 0; i < interests.size(); i++) {
-            int multiplicationFactor = interests.get(i).getStars();
+            int multiplicationFactor = 1;
+            if(adjusted){
+                multiplicationFactor=interests.get(i).getStars();
+            }
             Set<AttractionCategory> categories = interests.get(i).getAttractionType().getCategories();
+
             for (Iterator<AttractionCategory> attCategory = categories.iterator(); attCategory.hasNext(); ) {
                 AttractionCategory attractionCategory = attCategory.next();
                 switch (attractionCategory.getId().intValue()) {

@@ -40,25 +40,21 @@ public class Tour {
 			Set<AttractionCategory> categories = attraction.getAttractionType().getCategories();
 			for(Iterator<AttractionCategory>catsIt=categories.iterator();catsIt.hasNext();){
 				AttractionCategory attractionCategory = catsIt.next();
-				for(Iterator<AttractionType> typeIt = attractionCategory.getAttractionType().iterator();typeIt.hasNext();){
-					AttractionType attractionType=typeIt.next();
-					switch (attractionType.getId().intValue()){
-						case 1:
-							art++;
-							break;
-						case 2:
-							amusement++;
-							break;
-						case 3:
-							recreation++;
-							break;
-						case 4:
-							historic++;
-							break;
-						default:
-							break;
-					}
-
+				switch (attractionCategory.getId().intValue()){
+					case 1:
+						art++;
+						break;
+					case 2:
+						amusement++;
+						break;
+					case 3:
+						recreation++;
+						break;
+					case 4:
+						historic++;
+						break;
+					default:
+						break;
 				}
 			}
 			previous=attraction;
