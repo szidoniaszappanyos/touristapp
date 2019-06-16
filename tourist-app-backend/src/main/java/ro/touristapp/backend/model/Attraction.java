@@ -31,7 +31,7 @@ public class Attraction {
     private List<Picture> pictures;
 
     @ManyToOne
-    @JoinColumn(name = "weekly_schedule_id")
+    @JoinColumn(name = "weekly_schedu_id")
     @JsonManagedReference
     private WeeklySchedule weeklySchedule;
 

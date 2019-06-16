@@ -1,10 +1,10 @@
 export class Attraction {
   id:number;
-  name:string;
-  details:string;
-  pictureFileName:string;
+  name:String;
+  details:String;
+  pictureFileName:String;
 
-  constructor(id: number, name: string, details: string, pictureFileName: string) {
+  constructor(id: number, name: String, details: String, pictureFileName: String) {
     this.id = id;
     this.name = name;
     this.details = details;
