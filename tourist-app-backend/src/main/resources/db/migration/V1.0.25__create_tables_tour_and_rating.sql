@@ -1,0 +1,50 @@
+-- create sequences for all tables
+create sequence attraction_id_seq minvalue 1 increment 1;
+create sequence attraction_category_id_seq minvalue 1 increment 1;
+create sequence attraction_tour_id_seq minvalue 1 increment 1;
+create sequence attraction_type_id_seq minvalue 1 increment 1;
+create sequence daily_schedule_id_seq  minvalue 1 increment 1;
+create sequence gallery_id_seq  minvalue 1 increment 1;
+create sequence interests_id_seq  minvalue 1 increment 1;
+create sequence locations_id_seq  minvalue 1 increment 1;
+create sequence picture_id_seq  minvalue 1 increment 1;
+create sequence rating_id_seq  minvalue 1 increment 50;
+create sequence tour_id_seq  minvalue 1 increment 50;
+create sequence tourist_user_id_seq  minvalue 1 increment 1;
+create sequence users_id_seq  minvalue 1 increment 1;
+create sequence visit_id_seq  minvalue 1 increment 1;
+create sequence weekly_schedule_id_seq  minvalue 1 increment 1;
+
+alter table attraction alter column id set default nextval('attraction_id_seq');
+alter table attraction_category alter column id set default nextval('attraction_category_id_seq');
+alter table attraction_tour alter column id set default nextval('attraction_tour_id_seq');
+alter table attraction_type alter column id set default nextval('attraction_type_id_seq');
+alter table daily_schedule alter column id set default nextval('daily_schedule_id_seq');
+alter table gallery alter column id set default nextval('gallery_id_seq');
+alter table interests alter column id set default nextval('interests_id_seq');
+alter table picture alter column id set default nextval('picture_id_seq');
+alter table rating alter column id set default nextval('rating_id_seq');
+--alter table roles alter column id set default nextval('roles_id_seq');
+alter table tour alter column id set default nextval('tour_id_seq');
+alter table tourist_user alter column id set default nextval('tourist_user_id_seq');
+alter table users alter column id set default nextval('users_id_seq');
+alter table visit alter column id set default nextval('visit_id_seq');
+alter table weekly_schedule alter column id set default nextval('weekly_schedule_id_seq');
+
+
+alter sequence attraction_id_seq owned by attraction.id;
+alter sequence attraction_category_id_seq owned by attraction_category.id;
+alter sequence attraction_tour_id_seq owned by attraction_tour.id;
+alter sequence attraction_type_id_seq owned by attraction_type.id;
+alter sequence daily_schedule_id_seq owned by daily_schedule.id;
+alter sequence gallery_id_seq owned by gallery.id;
+alter sequence interests_id_seq owned by interests.id;
+alter sequence locations_id_seq owned by locations.id;
+alter sequence picture_id_seq owned by picture.id;
+alter sequence rating_id_seq owned by rating.id;
+--alter sequence roles_id_seq owned by roles.id;
+alter sequence tour_id_seq owned by tour.id;
+alter sequence tourist_user_id_seq owned by tourist_user.id;
+alter sequence users_id_seq owned by users.id;
+alter sequence visit_id_seq owned by visit.id;
+alter sequence weekly_schedule_id_seq owned by weekly_schedule.id;

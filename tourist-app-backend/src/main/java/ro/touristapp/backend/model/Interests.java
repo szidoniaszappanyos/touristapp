@@ -2,10 +2,7 @@ package ro.touristapp.backend.model;
 
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -13,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Interests {
 	@Id
+	@SequenceGenerator(name="interests_pk_sequence",sequenceName="interests_id_seq",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="interests_pk_sequence")
 	private Long id;
 
 	@ManyToOne

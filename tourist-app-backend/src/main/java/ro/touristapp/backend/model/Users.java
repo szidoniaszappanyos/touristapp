@@ -13,7 +13,8 @@ import java.util.Set;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="user_pk_sequence",sequenceName="users_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="user_pk_sequence")
     private Long id;
     private String username;
     private String password;

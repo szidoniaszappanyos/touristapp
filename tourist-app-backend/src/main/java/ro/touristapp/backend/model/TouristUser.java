@@ -6,12 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -19,7 +14,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class TouristUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="tourist_pk_sequence",sequenceName="tourist_user_id_seq",allocationSize = 1,initialValue = 2)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tourist_pk_sequence")
     private Long id;
     private String lastName;
     private String firstName;

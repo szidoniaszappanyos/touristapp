@@ -3,16 +3,15 @@ package ro.touristapp.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 public class Visit {
     @Id
+    @SequenceGenerator(name="visit_pk_sequence",sequenceName="visit_id_seq")
+    @GeneratedValue(strategy=GenerationType.AUTO,generator="visit_pk_sequence")
     private Long id;
     private Timestamp visitDate;
     private String details;

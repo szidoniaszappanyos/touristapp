@@ -16,31 +16,31 @@ INSERT INTO picture(
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (14, 'monday', '2019-01-01 08:00', '2019-01-01 16:00');
+	VALUES (14, 'monday', '2019-01-01 08:00+00', '2019-01-01 16:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (24, 'tuesday', '2019-01-01 08:00', '2019-01-01 16:00');
+	VALUES (24, 'tuesday', '2019-01-01 08:00+00', '2019-01-01 16:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (34, 'wednesday', '2019-01-01 08:00', '2019-01-01 14:00');
+	VALUES (34, 'wednesday', '2019-01-01 08:00+00', '2019-01-01 14:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (44, 'thursday', '2019-01-01 08:00', '2019-01-01 16:00');
+	VALUES (44, 'thursday', '2019-01-01 08:00+00', '2019-01-01 16:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (54, 'friday', '2019-01-01 10:00', '2019-01-01 19:00');
+	VALUES (54, 'friday', '2019-01-01 10:00+00', '2019-01-01 19:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (64,'saturday', '2019-01-01 08:00', '2019-01-01 19:00');
+	VALUES (64,'saturday', '2019-01-01 08:00+00', '2019-01-01 19:00+00');
 
 INSERT INTO daily_schedule(
 	id, working_day, opening_hours, closing_hours)
-	VALUES (74,'sunday', '2019-01-01 08:00', '2019-01-01 19:00');
+	VALUES (74,'sunday', '2019-01-01 08:00+00', '2019-01-01 19:00+00');
 
 INSERT INTO weekly_schedule(
 	id, monday, tuesday, wednesday, thursday, friday, saturday, sunday)

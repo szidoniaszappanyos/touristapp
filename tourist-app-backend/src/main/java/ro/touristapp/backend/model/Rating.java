@@ -1,18 +1,18 @@
 package ro.touristapp.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Rating {
     @Id
+    @SequenceGenerator(name="rating_pk_sequence",sequenceName="rating_id_seq")
+    @GeneratedValue(strategy=GenerationType.AUTO,generator="rating_pk_sequence")
     private long id;
     @ManyToOne
     private TouristUser user;
     @ManyToOne
     private Tour tour;
-    private int stars;
+    private int rating;
 
     public long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Rating {
         this.tour = tour;
     }
 
-    public int getStars() {
-        return stars;
+    public int getRating() {
+        return rating;
     }
 
-    public void setStars(int stars) {
-        this.stars = stars;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

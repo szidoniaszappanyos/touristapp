@@ -4,12 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -17,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class AttractionType {
 	@Id
+	@SequenceGenerator(name="attraction_type_pk_sequence",sequenceName="attraction_type_id_seq")
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="attraction_type_pk_sequence")
 	private Long id;
 	private String name;
 

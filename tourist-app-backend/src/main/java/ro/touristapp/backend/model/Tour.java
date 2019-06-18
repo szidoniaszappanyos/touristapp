@@ -1,16 +1,17 @@
 package ro.touristapp.backend.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.*;
-
 @Entity
 public class Tour {
 	@Id
-	private long id;
+	@SequenceGenerator(name="tour_pk_sequence",sequenceName="tour_id_seq")
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="tour_pk_sequence")
+	private Long id;
 
 	private long distance;// meters
 	private long duration;// seconds
@@ -26,6 +27,7 @@ public class Tour {
 
 	@OneToMany(mappedBy = "tour")
 	private Set<Rating> ratings;
+
 
 	public void generateSummary() {
 
