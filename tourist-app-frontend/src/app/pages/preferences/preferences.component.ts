@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material';
-import {PreferencesService} from "../../service/preferences.service";
-import {Preferences} from "../../model/Preferences";
+import {PreferencesService} from '../../service/preferences.service';
+import {Preferences} from '../../model/Preferences';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-preferences',
@@ -10,10 +9,10 @@ import {Preferences} from "../../model/Preferences";
   styleUrls: ['./preferences.component.scss']
 })
 export class PreferencesComponent  {
-  constructor( private prefService:PreferencesService){
-
+  constructor( private prefService: PreferencesService, private router: Router) {
   }
-  ratings:number[]=[];
+
+  ratings: number[] = [];
   value1 = 0;
   value2 = 0;
   value3 = 0;
@@ -35,6 +34,7 @@ export class PreferencesComponent  {
     this.ratings.push(this.value8);
     this.ratings.push(this.value9);
     this.prefService.setInterests(new Preferences(this.ratings));
-    console.log(this.ratings)
+    console.log(this.ratings);
+    this.router.navigate(['personal']);
   }
 }

@@ -5,13 +5,13 @@ create sequence attraction_tour_id_seq minvalue 1 increment 1;
 create sequence attraction_type_id_seq minvalue 1 increment 1;
 create sequence daily_schedule_id_seq  minvalue 1 increment 1;
 create sequence gallery_id_seq  minvalue 1 increment 1;
-create sequence interests_id_seq  minvalue 1 increment 1;
+create sequence interests_id_seq  minvalue 1 increment 1 start 2;
 create sequence locations_id_seq  minvalue 1 increment 1;
 create sequence picture_id_seq  minvalue 1 increment 1;
 create sequence rating_id_seq  minvalue 1 increment 50;
 create sequence tour_id_seq  minvalue 1 increment 50;
-create sequence tourist_user_id_seq  minvalue 1 increment 1;
-create sequence users_id_seq  minvalue 1 increment 1;
+create sequence tourist_user_id_seq  minvalue 1 increment 1 start 100;
+create sequence users_id_seq  minvalue 1 increment 1 start 100;
 create sequence visit_id_seq  minvalue 1 increment 1;
 create sequence weekly_schedule_id_seq  minvalue 1 increment 1;
 

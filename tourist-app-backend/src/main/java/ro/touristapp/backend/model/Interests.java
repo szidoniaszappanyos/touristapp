@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Interests {
 	@Id
-	@SequenceGenerator(name="interests_pk_sequence",sequenceName="interests_id_seq",allocationSize = 1)
+	@SequenceGenerator(name="interests_pk_sequence",sequenceName="interests_id_seq",allocationSize = 1,initialValue = 2)
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="interests_pk_sequence")
 	private Long id;
 

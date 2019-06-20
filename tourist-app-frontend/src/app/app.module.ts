@@ -26,6 +26,7 @@ import {SpecificMapComponent} from './pages/specific-map/specific-map.component'
 import {AboutClujComponent} from './pages/about-cluj/about-cluj.component';
 import {TripRecommendationsComponent} from './pages/trip-recommendations/trip-recommendations.component';
 import { DetailsTourComponent } from './pages/details-tour/details-tour.component';
+import {PersonalRecommendationsComponent} from './pages/personal-recommendations/personal-recommendations.component';
 
 
 @NgModule(
@@ -44,8 +45,7 @@ import { DetailsTourComponent } from './pages/details-tour/details-tour.componen
     AboutClujComponent,
     TripRecommendationsComponent,
     DetailsTourComponent,
-
-
+    PersonalRecommendationsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +63,7 @@ import { DetailsTourComponent } from './pages/details-tour/details-tour.componen
     }),
     AgmDirectionModule,
     GooglePlaceModule,
-    AgmCoreModule,
-
-
+    AgmCoreModule
   ],
   providers: [
     PolylineManager,GoogleMapsAPIWrapper,

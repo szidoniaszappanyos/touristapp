@@ -5,23 +5,27 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import ro.touristapp.backend.converter.AttractionToAttractionAllDtoConverter;
 import ro.touristapp.backend.converter.PictureConverter;
-import ro.touristapp.backend.model.Attraction;
-import ro.touristapp.backend.model.Location;
-import ro.touristapp.backend.model.Picture;
+import ro.touristapp.backend.model.*;
 import ro.touristapp.backend.model.dto.*;
-import ro.touristapp.backend.repository.AttractionRepository;
+import ro.touristapp.backend.repository.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class AttractionService {
+    @Autowired
+    TourRepository tourRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
+
+    @Autowired
+    RatingRepository ratingRepository;
 
     @Autowired
     AttractionRepository attractionRepository;
@@ -57,7 +61,7 @@ public class AttractionService {
     public DetailsDto getDetailsOfAttraction(long id) {
         Attraction attraction = attractionRepository.findById(id).get();
         List<String> schedule = new ArrayList<String>();
-        if(attraction.getWeeklySchedule()!=null){
+        if (attraction.getWeeklySchedule() != null) {
             schedule.add(attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
                     + attraction.getWeeklySchedule().getMondaySchedule().getOpeningHours().toString().substring(11, 16));
             schedule.add(attraction.getWeeklySchedule().getTuesdaySchedule().getOpeningHours().toString().substring(11, 16) + " - "
@@ -131,6 +135,67 @@ public class AttractionService {
                     , getLng(randomAttraction.getLocation().getDetails()), randomAttraction.getDetails()));
         }
         return attractions;
+    }
+
+    public void clearPreviousData(String username){
+        Optional<Users> user = usersRepository.findByUsername(username);
+        if (user.isPresent()) {
+            TouristUser touristUser = user.get().getTouristUser();
+            List<Rating> ratings = ratingRepository.findAllByUser(touristUser);
+            ratingRepository.deleteAll(ratings);
+            List<Tour> tours = tourRepository.findAll();
+            ratings = createUserRatings(touristUser, tours);
+            ratingRepository.saveAll(ratings);
+        }
+    }
+
+    public List<TourAttraction> getPersonalizedTour(String username, int number) {
+        Optional<Users> user = usersRepository.findByUsername(username);
+        List<TourAttraction> attractions = new ArrayList<>();
+        if (user.isPresent()) {
+            TouristUser touristUser = user.get().getTouristUser();
+            List<Rating> ratings = ratingRepository.findAllByUser(touristUser);
+            ratings.sort(Comparator.comparingInt(Rating::getRating).reversed());
+            attractions = ratings.get(number).getTour().getAttractions().stream().map(attraction -> {
+                String[] latLng = attraction.getLocation().getDetails().split(" ");
+                double latitude = Double.parseDouble(latLng[0]);
+                double longitude = Double.parseDouble(latLng[1]);
+                return new TourAttraction(attraction.getId(), attraction.getName(), latitude, longitude, attraction.getDetails());
+            }).collect(Collectors.toList());
+        }
+        return attractions;
+    }
+
+    private List<Rating> createUserRatings(TouristUser tourist, List<Tour> tours) {
+        int[] staticInterestPoints = tourist.getInterestsPoints(false);
+        int[] interestsPoints = tourist.getInterestsPoints(true);
+        double[] starsPerPoint = new double[staticInterestPoints.length];
+        for (int j = 0; j < starsPerPoint.length; j++) {
+            starsPerPoint[j] = (double) interestsPoints[j] / staticInterestPoints[j];
+            final Random random = new Random(System.currentTimeMillis());
+            starsPerPoint[j] += random.nextGaussian() * 0.75;
+        }
+
+        List<Rating> ratings = new ArrayList<>();
+        for (int j = 0; j < tours.size(); j++) {
+            Rating rating = new Rating();
+            rating.setUser(tourist);
+            rating.setTour(tours.get(j));
+            int total = 0;
+            double totalStars = 0;
+            total += tours.get(j).getArt();
+            totalStars += tours.get(j).getArt() * starsPerPoint[0];
+            total += tours.get(j).getAmusement();
+            totalStars += tours.get(j).getAmusement() * starsPerPoint[1];
+            total += tours.get(j).getRecreation();
+            totalStars += tours.get(j).getRecreation() * starsPerPoint[2];
+            total += tours.get(j).getHistoric();
+            totalStars += tours.get(j).getHistoric() * starsPerPoint[3];
+            int ratingInt = (int) Math.round((totalStars / total));
+            rating.setRating(ratingInt);
+            ratings.add(rating);
+        }
+        return ratings;
     }
 
     public TourAttraction getDetailsOfTourAttraction(long id) {

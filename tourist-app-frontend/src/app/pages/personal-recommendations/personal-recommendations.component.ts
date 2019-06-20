@@ -5,13 +5,14 @@ import {GetTourService} from "../../service/get-tour.service";
 import {Geolocations} from '../../model/geolocations';
 import {Geoloc} from "../../model/geoloc";
 import {MapsAPILoader} from "@agm/core";
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-trip-recommendations',
-  templateUrl: './trip-recommendations.component.html',
-  styleUrls: ['./trip-recommendations.component.scss']
+  templateUrl: './personal-recommendations.component.html',
+  styleUrls: ['./personal-recommendations.component.scss']
 })
-export class TripRecommendationsComponent implements OnInit {
+export class PersonalRecommendationsComponent implements OnInit {
 
   private tourGet: Observable<TourAttraction[]>;
   private tour: TourAttraction[];
@@ -43,22 +44,26 @@ export class TripRecommendationsComponent implements OnInit {
     suppressMarkers: true,
   }
 
-  constructor(private tourService: GetTourService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
-    this.tourGet = this.tourService.getTour();
-    this.tour = [];
-    this.tourGet.forEach(t => t.forEach(r => this.tour.push(r)));
-    this.tourGet.forEach(t => t.forEach(r => this.geolocs1.push(new Geoloc(r.latitude, r.longitude))));
-    this.tourGet.forEach(t => t.forEach(r => this.ids1.push(r.id)));
-    this.tourGet2 = this.tourService.getTour();
-    this.tour2 = [];
-    this.tourGet2.forEach(t => t.forEach(r => this.tour2.push(r)));
-    this.tourGet2.forEach(t => t.forEach(r => this.geolocs2.push(new Geoloc(r.latitude, r.longitude))));
-    this.tourGet2.forEach(t => t.forEach(r => this.ids2.push(r.id)));
-    this.tourGet3 = this.tourService.getTour();
-    this.tour3 = [];
-    this.tourGet3.forEach(t => t.forEach(r => this.tour3.push(r)));
-    this.tourGet3.forEach(t => t.forEach(r => this.geolocs3.push(new Geoloc(r.latitude, r.longitude))));
-    this.tourGet3.forEach(t => t.forEach(r => this.ids3.push(r.id)));
+  constructor(private tourService: GetTourService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private tokenStorage: TokenStorageService) {
+    const username: string = this.tokenStorage.getUsername();
+    this.tourService.clearPersonalTour(username).subscribe(() => {
+      this.tourGet = this.tourService.getPersonalTour(username, 1);
+      this.tour = [];
+      this.tourGet.forEach(t => t.forEach(r => this.tour.push(r)));
+      this.tourGet.forEach(t => t.forEach(r => this.geolocs1.push(new Geoloc(r.latitude, r.longitude))));
+      this.tourGet.forEach(t => t.forEach(r => this.ids1.push(r.id)));
+      this.tourGet2 = this.tourService.getPersonalTour(username, 2);
+      this.tour2 = [];
+      this.tourGet2.forEach(t => t.forEach(r => this.tour2.push(r)));
+      this.tourGet2.forEach(t => t.forEach(r => this.geolocs2.push(new Geoloc(r.latitude, r.longitude))));
+      this.tourGet2.forEach(t => t.forEach(r => this.ids2.push(r.id)));
+      this.tourGet3 = this.tourService.getPersonalTour(username, 3);
+      this.tour3 = [];
+      this.tourGet3.forEach(t => t.forEach(r => this.tour3.push(r)));
+      this.tourGet3.forEach(t => t.forEach(r => this.geolocs3.push(new Geoloc(r.latitude, r.longitude))));
+      this.tourGet3.forEach(t => t.forEach(r => this.ids3.push(r.id)));
+    });
+
   }
 
   ngOnInit() {
