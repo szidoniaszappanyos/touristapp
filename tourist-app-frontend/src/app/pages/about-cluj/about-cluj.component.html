@@ -1,0 +1,36 @@
+<div style="float: right ;" class="myCard col-lg-6 col-sm-12">
+  <mat-card>
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9nxwPfFR_jo" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </mat-card>
+</div>
+<div style="float: left; " class=" myCard col-lg-6 col-sm-12 ">
+  <mat-card>
+    <blockquote class="embedly-card"><h1>Cluj-Napoca </h1>
+      <hr>
+      <p>
+        As of 2011, 324,576 inhabitants lived within the city limits (making it the country's second most populous at
+        the
+        time, after the national capital Bucharest), marking a slight increase from the figure recorded at the 2002
+        census.
+        The Cluj-Napoca metropolitan area has a population of 411,379 people, while the population of the peri-urban
+        area
+        (Romanian: zona periurbană) exceeds 420,000 residents.</p>
+      <a href="https://en.wikipedia.org/wiki/Cluj-Napoca"> Click to read more on Wikipedia -></a>
+    </blockquote>
+    <script async src="https://en.wikipedia.org/wiki/Cluj-Napoca" charset="UTF-8"></script>
+
+  </mat-card>
+</div>
+<div style="float: left; " class=" myCard col-lg-6 col-sm-12 ">
+  <mat-card>
+    <mat-form-field>
+      <input matInput placeholder="Search for Places" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+    </mat-form-field>
+    <agm-map [streetViewControl]="false" [latitude]="lat" [longitude]="lng" [zoom]="15">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </mat-card>
+</div>
