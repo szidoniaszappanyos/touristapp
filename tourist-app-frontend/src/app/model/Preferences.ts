@@ -1,3 +1,7 @@
 export class Preferences {
-  rating:number[];
+  ratings:number[];
+
+  constructor(ratings: number[]) {
+    this.ratings = ratings;
+  }
 }

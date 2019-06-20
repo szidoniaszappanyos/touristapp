@@ -13,25 +13,80 @@
       <span matSuffix>hours</span>
     </mat-form-field>
   </div>
-  <mat-form-field class="example-chip-list">
-    <mat-chip-list #chipList>
-      <mat-chip *ngFor="let interest of interests" [selectable]="selectable"
-                [removable]="removable" (removed)="remove(interest)">
-        {{interest.name}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input placeholder="Your Intersts"
-             [matChipInputFor]="chipList"
-             [matAutocomplete]="auto"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let interest of interests | async" [value]="interest">
-        {{interest}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <button mat-button class="continue">Continue</button>
+  <div class="title">Rate the following attractions</div>
+  <br>
+  Churches
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value1"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Galleries
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value2"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Theatres and Operas
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value3"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Cinemas
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value4"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Parcs
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value5"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Monuments
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value6"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Old Buildings
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value7"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Shopping Centers
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value8"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  Museums
+  <mat-slider
+    thumbLabel
+    [displayWith]="formatLabel"
+    [(ngModel)]="value9"
+    tickInterval="1000"
+    min="0"
+    max="5"></mat-slider><br>
+  <hr>
+  <button mat-button class="continue" (click)="continue()">Continue</button>
 </div>
