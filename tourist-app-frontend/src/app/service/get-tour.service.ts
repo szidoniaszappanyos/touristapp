@@ -17,7 +17,7 @@ export class GetTourService {
     return this.apiService.getRequest('api/tour/random/');
   }
 
-  getAttraction(id:number): Observable<TourAttraction>{
-    return this.apiService.getRequest("api/attractions/tour/details/"+ id);
+  getAttraction(id1: number, id2: number, id3: number, id4: number, id5: number): Observable<TourAttraction[]> {
+    return this.apiService.getRequest("api/attractions/tour/details/"+id1+"/"+id2+"/"+id3+"/"+id4+"/"+id5);
   }
 }

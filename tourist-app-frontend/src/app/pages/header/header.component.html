@@ -10,19 +10,19 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/sights">Sights</a>
+        <a class="nav-link" routerLink="/sights" *ngIf="isAuthenticated()">Sights</a>
       </li>
       <li class="nav-item">
         <a class="nav-link " routerLink="/about">About our city</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " routerLink="/trips">Random Tour</a>
+        <a class="nav-link " routerLink="/trips" *ngIf="isAuthenticated()">Random Tour</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " routerLink="/preferences">Personalized Tour</a>
+        <a class="nav-link " routerLink="/preferences" *ngIf="isAuthenticated()">Personalized Tour</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " routerLink="/login">Logout</a>
+        <a class="nav-link " routerLink="/login" *ngIf="isAuthenticated()" (click)="logout()">Logout</a>
       </li>
     </ul>
     <span class="navbar-text font-italic">
