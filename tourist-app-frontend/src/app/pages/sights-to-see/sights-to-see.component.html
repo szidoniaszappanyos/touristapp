@@ -1,0 +1,14 @@
+<div class="card-columns">
+  <div *ngFor="let attraction of attractions ; let i = index">
+    <a [routerLink]="['/details', attraction.id]">
+      <div class="card">
+        <img class="card-img-top" src="assets/img/{{attraction.pictureFileName}}" alt="Card image"
+             matTooltip="Click to see more details!">
+        <div class="card-body  ">
+          <h3 class="card-title">{{attraction.name}}</h3>
+          <div class="card-text"> {{attraction.details}}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {DetailsComponent} from "./pages/details/details.component";
 import {AboutClujComponent} from "./pages/about-cluj/about-cluj.component";
 import {TripRecommendationsComponent} from "./pages/trip-recommendations/trip-recommendations.component";
 import {DetailsTourComponent} from "./pages/details-tour/details-tour.component";
+import {PreferencesComponent} from "./pages/preferences/preferences.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'details/:id', component: DetailsComponent},
   { path: 'about', component: AboutClujComponent},
   { path: 'trips', component: TripRecommendationsComponent},
+  { path: 'preferences', component: PreferencesComponent},
   { path: 'details-tour/:id1/:id2/:id3/:id4/:id5', component: DetailsTourComponent},
 ];
 

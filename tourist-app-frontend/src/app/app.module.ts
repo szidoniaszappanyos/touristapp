@@ -45,6 +45,7 @@ import { DetailsTourComponent } from './pages/details-tour/details-tour.componen
     TripRecommendationsComponent,
     DetailsTourComponent,
 
+
   ],
   imports: [
     BrowserModule,
