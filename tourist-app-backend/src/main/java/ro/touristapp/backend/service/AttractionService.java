@@ -11,7 +11,10 @@ import ro.touristapp.backend.converter.AttractionToAttractionAllDtoConverter;
 import ro.touristapp.backend.converter.PictureConverter;
 import ro.touristapp.backend.model.*;
 import ro.touristapp.backend.model.dto.*;
-import ro.touristapp.backend.repository.*;
+import ro.touristapp.backend.repository.AttractionRepository;
+import ro.touristapp.backend.repository.RatingRepository;
+import ro.touristapp.backend.repository.TourRepository;
+import ro.touristapp.backend.repository.UsersRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -136,7 +139,6 @@ public class AttractionService {
         }
         return attractions;
     }
-
     public void clearPreviousData(String username){
         Optional<Users> user = usersRepository.findByUsername(username);
         if (user.isPresent()) {
@@ -199,11 +201,37 @@ public class AttractionService {
         return ratings;
     }
 
-    public TourAttraction getDetailsOfTourAttraction(long id) {
-        Optional<Attraction> attraction = attractionRepository.findById(id);
+    public List<TourAttraction> getDetailsOfTourAttraction(long id1, long id2, long id3, long id4, long id5) {
+        List<TourAttraction> tourAttractions = new ArrayList<>();
+        Optional<Attraction> attraction = attractionRepository.findById(id1);
         TourAttraction tourAttraction = new TourAttraction(attraction.get().getId(), attraction.get().getName()
                 , getLat(attraction.get().getLocation().getDetails())
                 , getLng(attraction.get().getLocation().getDetails()), attraction.get().getDetails());
-        return tourAttraction;
+        tourAttractions.add(tourAttraction);
+
+        Optional<Attraction> attraction2 = attractionRepository.findById(id2);
+        TourAttraction tourAttraction2 = new TourAttraction(attraction2.get().getId(), attraction2.get().getName()
+                , getLat(attraction2.get().getLocation().getDetails())
+                , getLng(attraction2.get().getLocation().getDetails()), attraction2.get().getDetails());
+        tourAttractions.add(tourAttraction2);
+
+        Optional<Attraction> attraction3 = attractionRepository.findById(id3);
+        TourAttraction tourAttraction3 = new TourAttraction(attraction3.get().getId(), attraction3.get().getName()
+                , getLat(attraction3.get().getLocation().getDetails())
+                , getLng(attraction3.get().getLocation().getDetails()), attraction3.get().getDetails());
+        tourAttractions.add(tourAttraction3);
+
+        Optional<Attraction> attraction4 = attractionRepository.findById(id4);
+        TourAttraction tourAttraction4 = new TourAttraction(attraction4.get().getId(), attraction4.get().getName()
+                , getLat(attraction4.get().getLocation().getDetails())
+                , getLng(attraction4.get().getLocation().getDetails()), attraction4.get().getDetails());
+        tourAttractions.add(tourAttraction4);
+
+        Optional<Attraction> attraction5 = attractionRepository.findById(id5);
+        TourAttraction tourAttraction5 = new TourAttraction(attraction5.get().getId(), attraction5.get().getName()
+                , getLat(attraction5.get().getLocation().getDetails())
+                , getLng(attraction5.get().getLocation().getDetails()), attraction5.get().getDetails());
+        tourAttractions.add(tourAttraction5);
+        return tourAttractions;
     }
 }

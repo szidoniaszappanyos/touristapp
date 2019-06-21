@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from "
 import {AuthService} from "../../auth/auth.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {AuthLoginInfo} from "../../auth/login-info";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -44,7 +45,9 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private tokenStorage: TokenStorageService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private route: ActivatedRoute,
+              private router: Router,) {
     this.form = this.formBuilder.group (
       {password: new FormControl('', PasswordValidation),
         username: new FormControl('', UserNameValidation)}
@@ -89,7 +92,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
         this.showSnackbar('Login successful!');
-        this.reloadPage();
+        this.router.navigate(['about']);
       },
       error => {
         console.log(error);
