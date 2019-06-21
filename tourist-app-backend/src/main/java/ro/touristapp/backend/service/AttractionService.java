@@ -163,6 +163,7 @@ public class AttractionService {
                 return new TourAttraction(attraction.getId(), attraction.getName(), latitude, longitude, attraction.getDetails());
             }).collect(Collectors.toList());
         }
+        System.out.println(attractions);
         return attractions;
     }
 

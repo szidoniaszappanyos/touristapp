@@ -33,7 +33,7 @@ public class TouristAppBackendApplication {
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
         List<Tour> tours = new ArrayList<>();
-        for(int i=0;i<10000;i++) {
+        for(int i=0;i<100;i++) {
             tours.addAll(touristCreatorBean.createTours(50));
         }
     }
