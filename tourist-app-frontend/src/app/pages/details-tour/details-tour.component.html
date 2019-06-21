@@ -10,12 +10,6 @@
           <button mat-button >See more details</button>
         </a>
       </div>
-      <div class="card-footer">
-        <agm-map [streetViewControl]="false" [latitude]="attraction.latitude" [longitude]="attraction.longitude"
-                 [zoom]="15" [draggable]="false" [draggableCursor]="false">
-          <agm-marker [latitude]="attraction.latitude" [longitude]="attraction.longitude"></agm-marker>
-        </agm-map>
-      </div>
     </div>
   </div>
 </div>

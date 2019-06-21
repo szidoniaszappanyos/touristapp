@@ -1,19 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div class="jumbotron">
-  <div class="title">Choose your preferences</div>
-  <hr class="my-4">
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Budget" type="number" class="example-left-align">
-      <span matSuffix>RON</span>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Duration" type="number" >
-      <span matSuffix>hours</span>
-    </mat-form-field>
-  </div>
-  <div class="title">Rate the following attractions</div>
+  <div class="title">Set your Preferences - Rate the following attractions</div>
   <br>
   Churches
   <mat-slider
@@ -88,5 +76,5 @@
     min="0"
     max="5"></mat-slider><br>
   <hr>
-  <a [routerLink]="['/trips']"><button mat-button class="continue" (click)="continue()">Continue</button></a>
+  <a ><button mat-button class="continue" (click)="continue()">Continue</button></a>
 </div>

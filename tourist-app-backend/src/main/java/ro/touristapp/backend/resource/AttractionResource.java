@@ -46,8 +46,11 @@ public class AttractionResource {
     }
 
     @RequestMapping(path = "/tour/details/{id1}/{id2}/{id3}/{id4}/{id5}", method = RequestMethod.GET)
-    public List<TourAttraction> getDetailsOfTourAttraction(@PathVariable long id1, @PathVariable long id2, @PathVariable long id3,
-                                                       @PathVariable long id4, @PathVariable long id5) {
+    public List<TourAttraction> getDetailsOfTourAttraction(@PathVariable long id1,
+                                                           @PathVariable long id2,
+                                                           @PathVariable long id3,
+                                                           @PathVariable long id4,
+                                                           @PathVariable long id5) {
         return attractionService.getDetailsOfTourAttraction(id1,id2,id3,id4,id5);
     }
 
