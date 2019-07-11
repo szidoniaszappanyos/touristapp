@@ -58,7 +58,7 @@ import {PersonalRecommendationsComponent} from './pages/personal-recommendations
     CommonModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBJtyozSdp3v_CzYFz28I26Ay7mwii8dBU',
+      apiKey: '',
       libraries: ["places"]
     }),
     AgmDirectionModule,
